@@ -12,12 +12,17 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { InvitationFillingComponent } from './components/invitation-filling/invitation-filling.component';
+import { InvitationCreatorComponent } from './pages/invitation-creator/invitation-creator.component';
+import {BrowserModule} from '@angular/platform-browser';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    InvitationFillingComponent,
+    InvitationCreatorComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -28,7 +33,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

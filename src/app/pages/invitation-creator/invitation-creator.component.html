@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title"> Choose template </h4>
+    </div>
+    <div class="card-body">
+
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title"> Filling Information </h4>
+    </div>
+    <div class="card-body document-card-container">
+        <div *ngIf="content" [innerHTML]="content" id="document-invitation"> </div>
+        <button class="icon_image " title="Share As PDF" (click)="exportAsPDF('document-invitation');">
+            Download
+        </button>
+
+    </div>
+</div>
