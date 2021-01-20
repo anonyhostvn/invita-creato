@@ -1,9 +1,29 @@
-export const content = `
+import {Moment} from 'moment';
+
+export const styleC: Partial<CSSStyleDeclaration> = {
+    width: '1000px'
+};
+
+export enum GENDER_TYPE {
+    MALE,
+    FEMALE
+}
+
+export interface FilledInformation {
+    name: string,
+    position: string,
+    gender: GENDER_TYPE,
+    formOfExchange: string,
+    time: Moment,
+    place: string,
+    ctsRepresent: string[]
+}
+
+export const content = ({name, position, gender, formOfExchange, time, ctsRepresent}: FilledInformation) => `
 <style>
 .document-box {
     border-radius: 20px;
     height: auto;
-    width: 100%;
     background-image: linear-gradient(to top, #00aaff, #4ebef9, #80d0f3, #afe0f0, #ddeef1);
     display: flex;
     padding: 20px;
@@ -22,6 +42,7 @@ export const content = `
 }
 
 .first-title-text {
+    text-transform: uppercase;
     position: relative;
     text-align: center;
     width: 100%;
@@ -66,33 +87,38 @@ export const content = `
         </div>
 
         <div class="first-title-text">
-            THAM DỰ TRAO ĐỔI CƠ HỘI CÔNG VIỆC VỊ TRÍ CÁN BỘ KINH DOANH
+            THAM DỰ TRAO ĐỔI CƠ HỘI CÔNG VIỆC VỊ TRÍ ${position}
         </div>
     </div>
 
     <div class="document-main-part">
 
         <div class="document-dear-text">
-            Dear Mr. Nguyễn Hoàng Việt,
+            Dear ${name},
         </div>
 
         <div class="document-gap-space"></div>
 
         <div class="document-greeting-text">
-            Trước hết, CMC Technology & Solution (CTS) rất trân trọng và cảm ơn sự quan tâm anh đã dành cho công
-            ty.
+            Trước hết, CMC Technology & Solution (CTS) rất trân trọng và cảm ơn sự quan tâm ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} đã dành cho công ty.
         </div>
 
         <div class="document-gap-space"></div>
 
         <div class="document-main-content-text">
-            <span> Qua hồ sơ và thông tin trao đổi, chúng tôi nhận thấy sự phù hợp của anh với vị trí Cán bộ kinh doanh mà chúng tôi đang có nhu cầu tuyển dụng. Để giúp anh hiểu thêm về CTS cũng như những chế độ - chính sách tại Công ty, Chúng tôi mời anh tham dự buổi trao đổi chính thức với những thông tin cụ thể như sau: </span>
+            <span> Qua hồ sơ và thông tin trao đổi, chúng tôi nhận thấy sự phù hợp của anh với vị trí ${position} mà chúng tôi đang có nhu cầu tuyển dụng. Để giúp anh hiểu thêm về CTS cũng như những chế độ - chính sách tại Công ty, Chúng tôi mời anh tham dự buổi trao đổi chính thức với những thông tin cụ thể như sau: </span>
             <div class="document-gap-space-mini"></div>
             <ul>
-                <li><b> Hình thức :</b> Trao đổi trực tiếp</li>
+                <li><b> Hình thức :</b> ${formOfExchange} </li>
                 <li><b> Thời gian: </b> 9h00’, Thứ Tư - ngày 06/01/2021</li>
                 <li><b> Địa điểm: </b> Tầng 14 – tòa CMC – Duy Tân – Cầu Giấy</li>
-                <li><b> Đại diện CTS tham dự trao đổi: </b> Mr. Trịnh Quốc Bảo – Phó Giám đốc khối SMB</li>
+                <li>
+                    <b> Đại diện CTS tham dự trao đổi: </b>
+                    <ul>
+                        <li> Mr. Trịnh Quốc Bảo – Phó Giám đốc khối SMB </li>
+                        <li> Mr. Trịnh Quốc Bảo – Phó Giám đốc khối SMB </li>
+                    </ul>
+                </li>
             </ul>
         </div>
 

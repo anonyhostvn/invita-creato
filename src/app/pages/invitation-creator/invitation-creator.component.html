@@ -11,10 +11,14 @@
         <h4 class="card-title"> Filling Information </h4>
     </div>
     <div class="card-body document-card-container">
-        <div *ngIf="content" [innerHTML]="content" id="document-invitation"> </div>
-        <button class="icon_image " title="Share As PDF" (click)="exportAsPDF('document-invitation');">
+        <button
+                class="btn btn-primary btn-round"
+                (click)="exportAsPDF('document-invitation');"
+                style="width: 200px"
+        >
+            <i class="fa fa-download"></i>
             Download
         </button>
-
+        <div *ngIf="content" [innerHTML]="content" id="document-invitation"></div>
     </div>
 </div>
