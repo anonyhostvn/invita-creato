@@ -39,8 +39,10 @@ export class InvitationCreatorComponent implements OnInit {
                 name: 'Nguyễn Hoàng Hiếu',
                 position: 'Cán bộ kinh doanh',
                 gender: GENDER_TYPE.MALE,
-                ctsRepresent: ['Mr NHL'], formOfExchange: 'Trao đổi gián tiếp', place: 'CTS',
-                time: unix(10101010)
+                ctsRepresent: ['Mr NHL', 'Mr DMD'], formOfExchange: 'Trao đổi gián tiếp', place: 'CTS',
+                time: unix(10101010),
+                attentionInfo: [ 'Mang theo CMTND để checkin tại lễ tân tòa nhà', 'Chỗ gửi xe phía sau tòa nhà', 'Giữ bình tĩnh'],
+                supportPerson: 'SĐT: 0962.456.194 (Ms. My)'
             }
             )
         );
