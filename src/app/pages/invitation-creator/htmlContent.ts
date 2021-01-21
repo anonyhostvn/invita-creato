@@ -1,5 +1,3 @@
-import {Moment} from 'moment';
-
 export const styleC: Partial<CSSStyleDeclaration> = {
     width: '1000px'
 };
@@ -14,7 +12,7 @@ export interface FilledInformation {
     position: string,
     gender: GENDER_TYPE,
     formOfExchange: string,
-    time: Moment,
+    time: string,
     place: string,
     ctsRepresent: string[],
     attentionInfo: string[],
@@ -108,11 +106,11 @@ export const content = ({name, position, gender, formOfExchange, time, ctsRepres
         <div class="document-gap-space"></div>
 
         <div class="document-main-content-text">
-            <span> Qua hồ sơ và thông tin trao đổi, chúng tôi nhận thấy sự phù hợp của anh với vị trí ${position} mà chúng tôi đang có nhu cầu tuyển dụng. Để giúp ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} hiểu thêm về CTS cũng như những chế độ - chính sách tại Công ty, Chúng tôi mời ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} tham dự buổi trao đổi chính thức với những thông tin cụ thể như sau: </span>
+            <span> Qua hồ sơ và thông tin trao đổi, chúng tôi nhận thấy sự phù hợp của ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} với vị trí ${position} mà chúng tôi đang có nhu cầu tuyển dụng. Để giúp ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} hiểu thêm về CTS cũng như những chế độ - chính sách tại Công ty, chúng tôi mời ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} tham dự buổi trao đổi chính thức với những thông tin cụ thể như sau: </span>
             <div class="document-gap-space-mini"></div>
             <ul>
                 <li><b> Hình thức :</b> ${formOfExchange} </li>
-                <li><b> Thời gian: </b> ${time.format('LT')}, ${time.locale('vi').format('dddd')} - ngày ${time.format('DD/MM/yyyy')} </li>
+                <li><b> Thời gian: </b> ${time} </li>
                 <li><b> Địa điểm: </b> ${place} </li>
                 <li>
                     <b> Đại diện CTS tham dự trao đổi: </b>
@@ -126,7 +124,7 @@ export const content = ({name, position, gender, formOfExchange, time, ctsRepres
         <div class="document-gap-space"></div>
 
         <div class="document-main-content-text">
-            <span> <b> <i>  Khi tới tham dự  buổi trao đổi, anh chú ý: </i> </b></span>
+            <span> <b> <i>  Khi tới tham dự  buổi trao đổi, ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} chú ý: </i> </b></span>
             <div class="document-gap-space-mini"></div>
             <ul>
                 ${attentionInfo.reduce((previousValue, currentValue, index, array) => previousValue + `<li> ${currentValue} </li>`, '')}
@@ -136,7 +134,7 @@ export const content = ({name, position, gender, formOfExchange, time, ctsRepres
         <div class="document-gap-space"></div>
 
         <div class="document-main-content-text">
-            <span> Anh vui lòng trả lời email này để xác nhận ${gender === GENDER_TYPE.MALE ? 'Anh' : 'Chị'} sẽ tham dự buổi trao đổi. Nếu có bất kì điều gì bất tiện, Anh có thể liên hệ ngay qua email này hoặc qua ${supportPerson}  để được hỗ trợ. </span>
+            <span> ${gender === GENDER_TYPE.MALE ? 'Anh' : 'Chị'} vui lòng trả lời email này để xác nhận ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} sẽ tham dự buổi trao đổi. Nếu có bất kì điều gì bất tiện, ${gender === GENDER_TYPE.MALE ? 'anh' : 'chị'} có thể liên hệ ngay qua email này hoặc qua ${supportPerson}  để được hỗ trợ. </span>
         </div>
 
         <div class="document-gap-space"></div>

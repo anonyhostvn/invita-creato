@@ -11,6 +11,85 @@
         <h4 class="card-title"> Filling Information </h4>
     </div>
     <div class="card-body document-card-container">
+
+        <form [formGroup]="informationForm" >
+            <div class="row">
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="inviter-name">Invited Person Name</label>
+                        <input id="inviter-name" type="text" class="form-control" placeholder="Name" formControlName="name">
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="invited-position">Invited Position</label>
+                        <input id="invited-position" type="text" class="form-control" placeholder="Position" formControlName="position">
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="inviter-gender"> Gender </label>
+                        <select id="inviter-gender" class="form-control" formControlName="gender">
+                            <option value="0"> Male </option>
+                            <option value="1"> Female </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="form-exchange"> Form of Meeting </label>
+                        <input id="form-exchange" type="text" class="form-control" placeholder="Form of Exchange" formControlName="formOfExchange">
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="meeting-place"> Place of Meeting </label>
+                        <input id="meeting-place" type="text" class="form-control" placeholder="Place of Meeting" formControlName="place">
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="meeting-time"> Meeting Time </label>
+                        <input id="meeting-time" type="text" class="form-control" placeholder="Time" formControlName="time">
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="support-person"> Support Person </label>
+                        <input id="support-person" type="text" class="form-control" placeholder="Support Person" formControlName="supportPerson">
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="cts-represent"> Cts Represent </label>
+                        <input id="cts-represent" type="text" class="form-control" placeholder="Cts Represent" formControlName="ctsRepresent">
+                    </div>
+                </div>
+
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="attention-information"> Attention Information </label>
+                        <input id="attention-information" type="text" class="form-control" placeholder="Attention Information" formControlName="attentionInfo">
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success" (click)="onSubmit()">Generate</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <div *ngIf="content" [innerHTML]="content" id="document-invitation"></div>
         <button
                 class="btn btn-primary btn-round"
                 (click)="exportAsPDF('document-invitation');"
@@ -19,6 +98,5 @@
             <i class="fa fa-download"></i>
             Download
         </button>
-        <div *ngIf="content" [innerHTML]="content" id="document-invitation"></div>
     </div>
 </div>
