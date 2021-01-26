@@ -75,7 +75,6 @@ export class InvitationCreatorComponent implements OnInit {
         private sanitizer: DomSanitizer,
         private formBuilder: FormBuilder
     ) {
-
     }
 
     ngOnInit(): void {
