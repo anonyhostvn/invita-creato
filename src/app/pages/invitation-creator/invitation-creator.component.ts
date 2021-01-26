@@ -36,15 +36,15 @@ export class InvitationCreatorComponent implements OnInit {
     ngChangeTemplate = (): void => {
         this.content = this.sanitizer.bypassSecurityTrustHtml(content(
             {
-                name: 'Nguyễn Hoàng Hiếu',
-                position: 'Cán bộ kinh doanh',
-                gender: GENDER_TYPE.MALE,
-                ctsRepresent: ['Mr NHL', 'Mr DMD'],
-                formOfExchange: 'Trao đổi gián tiếp',
-                place: 'CTS',
-                time: '4:50 AM, thứ ba - ngày 28/04/1970',
-                attentionInfo: [ 'Mang theo CMTND để checkin tại lễ tân tòa nhà', 'Chỗ gửi xe phía sau tòa nhà', 'Giữ bình tĩnh'],
-                supportPerson: 'SĐT: 0962.456.194 (Ms. My)'
+                // name: 'Nguyễn Hoàng Hiếu',
+                // position: 'Cán bộ kinh doanh',
+                // gender: GENDER_TYPE.MALE,
+                // ctsRepresent: ['Mr NHL', 'Mr DMD'],
+                // formOfExchange: 'Trao đổi gián tiếp',
+                // place: 'CTS',
+                // time: '4:50 AM, thứ ba - ngày 28/04/1970',
+                // attentionInfo: [ 'Mang theo CMTND để checkin tại lễ tân tòa nhà', 'Chỗ gửi xe phía sau tòa nhà', 'Giữ bình tĩnh'],
+                // supportPerson: 'SĐT: 0962.456.194 (Ms. My)'
             }, this.recentTemplate.templateContent)
         );
     }
@@ -53,8 +53,8 @@ export class InvitationCreatorComponent implements OnInit {
         const {value} = this.informationForm;
         this.content = this.sanitizer.bypassSecurityTrustHtml(content({
             ...value,
-            ctsRepresent: value.ctsRepresent.split(','),
-            attentionInfo: value.attentionInfo.split(',')
+            ctsRepresent: value.ctsRepresent ? value.ctsRepresent.split(',') : undefined,
+            attentionInfo: value.attentionInfo ? value.attentionInfo.split(',') : undefined
         }, this.recentTemplate.templateContent));
     }
 
@@ -68,13 +68,6 @@ export class InvitationCreatorComponent implements OnInit {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-
-            // const img = document.createElement('img');
-            // img.src = contentDataURL;
-            // document.body.appendChild(img);
-            // const pdf = new jsPDF('p', 'cm', 'a4'); // Generates PDF in portrait mode
-            // pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 15.0);
-            // pdf.save('Filename.pdf');
         });
     }
 

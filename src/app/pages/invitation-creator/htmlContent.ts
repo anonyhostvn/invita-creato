@@ -22,7 +22,7 @@ export interface FilledInformation {
 }
 
 export const content = (
-    input: FilledInformation,
+    input: any,
     template: string
 ) => {
     const {gender} = input;
