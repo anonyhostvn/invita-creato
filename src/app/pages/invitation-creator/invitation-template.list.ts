@@ -1,38 +1,4 @@
-import {render} from 'mustache';
-
-export const styleC: Partial<CSSStyleDeclaration> = {
-    width: '1000px'
-};
-
-export enum GENDER_TYPE {
-    MALE,
-    FEMALE
-}
-
-export interface FilledInformation {
-    name: string,
-    position: string,
-    gender: GENDER_TYPE,
-    formOfExchange: string,
-    time: string,
-    place: string,
-    ctsRepresent: string[],
-    attentionInfo: string[],
-    supportPerson: string
-}
-
-export const content = (
-    input: FilledInformation,
-    template: string
-) => {
-    const {gender} = input;
-    const reInput = {
-        ...input,
-        vocative: gender === GENDER_TYPE.MALE ? 'anh' : 'chị',
-        upperCaseVocative: gender === GENDER_TYPE.MALE ? 'Anh' : 'Chị',
-    }
-
-    const recentTemplate = `
+export const template1 = `
         <style>
         .document-box {
             border-radius: 20px;
@@ -133,7 +99,23 @@ export const content = (
                     <span> <b> Trân trọng. </b> </span>
                 </div>
             </div>
-        </div> `
+        </div>
+`;
 
-    return render(template, reInput);
-}
+export const listTemplate = [
+    {
+        templateName: 'Thư mời trao đổi công việc',
+        templateContent: template1,
+        fields: [
+            'name',
+            'position',
+            'gender',
+            'ctsRepresent',
+            'formOfExchange',
+            'place',
+            'time',
+            'attentionInfo',
+            'supportPerson'
+        ]
+    }
+]

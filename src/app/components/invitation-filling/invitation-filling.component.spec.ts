@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InvitationFillingComponent } from './invitation-filling.component';
+import {InvitationFillingComponent} from './invitation-filling.component';
 
 describe('InvitationFillingComponent', () => {
   let component: InvitationFillingComponent;

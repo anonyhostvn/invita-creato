@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InvitationCreatorComponent } from './invitation-creator.component';
+import {InvitationCreatorComponent} from './invitation-creator.component';
 
 describe('InvitationCreatorComponent', () => {
   let component: InvitationCreatorComponent;

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
 @Component({
   selector: 'app-invitation-filling',
   templateUrl: './invitation-filling.component.html',
