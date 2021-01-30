@@ -2,9 +2,9 @@
     <div class="card-header">
         <h4 class="card-title"> Choose template </h4>
     </div>
-    <div class="card-body">
+    <div class="card-body" >
         <label for="choosing-template"> Choosing Your Template </label>
-        <select [(ngModel)]="recentTemplate" (ngModelChange)="ngChangeTemplate()" class="custom-select" id="choosing-template">
+        <select [(ngModel)]="recentTemplate" (ngModelChange)="ngChangeTemplate()" class="custom-select" id="choosing-template" [disabled]="!isNew">
             <option [value]="null">
                 ---
             </option>
@@ -98,7 +98,11 @@
 
 
                 <div class="col-md-12 pr-1">
-                    <button type="button" class="btn btn-success" (click)="onSubmit()">
+                    <a class="btn btn-primary" [routerLink]="['/document-management']">
+                        <i class="fa fa-backward"></i>
+                        Back
+                    </a>
+                    <button type="button" class="btn btn-primary" (click)="onSubmit()">
                         <i class="fa fa-cogs"></i>
                         Generate
                     </button>

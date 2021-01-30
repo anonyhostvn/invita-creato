@@ -3,8 +3,9 @@ import {content, GENDER_TYPE} from './htmlContent';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import * as htmlToImage from 'html-to-image';
 import {FormBuilder} from '@angular/forms';
-import {InvitationCreatorService} from './invitation-creator.service';
-
+import {TemplateService} from '../../services/template.service';
+import {ActivatedRoute} from '@angular/router';
+import {DocumentService} from '../../services/document.service';
 
 @Component({
     selector: 'app-invitation-creator',
@@ -17,7 +18,11 @@ export class InvitationCreatorComponent implements OnInit {
 
     recentTemplate: any = {};
 
-    listTemplate = this.invitationCreatorService.getAllTemplate();
+    listTemplate = this.templateService.getAllTemplate();
+
+    recentDocument = {};
+
+    isNew = true;
 
     informationForm = this.formBuilder.group({
         name: '',
@@ -74,10 +79,26 @@ export class InvitationCreatorComponent implements OnInit {
     constructor(
         private sanitizer: DomSanitizer,
         private formBuilder: FormBuilder,
-        private invitationCreatorService: InvitationCreatorService
+        private templateService: TemplateService,
+        private documentService: DocumentService,
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
+        const {snapshot: {paramMap}} = this.route;
+        const documentId = paramMap.get('id');
+        if (documentId !== 'new') {
+            this.isNew = false;
+            this.documentService.getSingleDocument(documentId).subscribe((singleDocument: any) => {
+                this.recentDocument = singleDocument;
+                this.listTemplate.subscribe(data => {
+                    this.recentTemplate = data.filter(listTemplate => listTemplate.id === singleDocument.templateId)[0];
+                    this.ngChangeTemplate();
+                    this.informationForm = this.formBuilder.group(JSON.parse(singleDocument.filledInformation));
+                    this.onSubmit();
+                });
+            });
+        }
     }
 
 }

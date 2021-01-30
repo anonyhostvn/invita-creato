@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DocumentManagementService} from './document-management.service';
+import {DocumentService} from '../../services/document.service';
 
 @Component({
   selector: 'app-document-management',
@@ -8,10 +8,10 @@ import {DocumentManagementService} from './document-management.service';
 })
 export class DocumentManagementComponent implements OnInit {
 
-  listDocument = this.documentManagementService.getAllDocuments();
+  listDocument = this.documentService.getAllDocuments();
 
   constructor(
-      private documentManagementService: DocumentManagementService
+      private documentService: DocumentService
   ) { }
 
   ngOnInit(): void {
