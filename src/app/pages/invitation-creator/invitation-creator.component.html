@@ -114,8 +114,12 @@
                         <i class="fa fa-download"></i>
                         Download
                     </button>
-                    <button type="button" class="btn btn-secondary" (click)="ngOnSave()">
-                        <i class="fa fa-save"></i>
+                    <button
+                            type="button" class="btn btn-secondary"
+                            (click)="ngOnSave()"
+                    >
+                        <i *ngIf="isLoading" class='fa fa-spinner fa-spin '></i>
+                        <i *ngIf="!isLoading" class="fa fa-save"></i>
                         Save
                     </button>
                 </div>

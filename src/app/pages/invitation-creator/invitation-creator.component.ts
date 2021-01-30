@@ -24,6 +24,8 @@ export class InvitationCreatorComponent implements OnInit {
 
     isNew = true;
 
+    isLoading = false;
+
     informationForm = this.formBuilder.group({
         name: '',
         position: '',
@@ -41,7 +43,9 @@ export class InvitationCreatorComponent implements OnInit {
             ...this.recentDocument,
             filledInformation: JSON.stringify(this.informationForm.value),
         }
+        this.isLoading = true;
         this.documentService.saveDocument(this.recentDocument.id, newDocument).subscribe(response  => {
+            this.isLoading = false;
             console.log(response);
         });
     }
