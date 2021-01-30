@@ -20,7 +20,7 @@ export class InvitationCreatorComponent implements OnInit {
 
     listTemplate = this.templateService.getAllTemplate();
 
-    recentDocument = {};
+    recentDocument: any = {};
 
     isNew = true;
 
@@ -36,7 +36,15 @@ export class InvitationCreatorComponent implements OnInit {
         supportPerson: ''
     });
 
-    ngOnSave = (): void => console.log(this.recentTemplate);
+    ngOnSave = (): void => {
+        const newDocument = {
+            ...this.recentDocument,
+            filledInformation: JSON.stringify(this.informationForm.value),
+        }
+        this.documentService.saveDocument(this.recentDocument.id, newDocument).subscribe(response  => {
+            console.log(response);
+        });
+    }
 
     ngChangeTemplate = (): void => {
         this.content = this.sanitizer.bypassSecurityTrustHtml(content(
@@ -88,7 +96,7 @@ export class InvitationCreatorComponent implements OnInit {
         const {snapshot: {paramMap}} = this.route;
         const documentId = paramMap.get('id');
         if (documentId !== 'new') {
-            this.isNew = false;
+            this.isNew = null;
             this.documentService.getSingleDocument(documentId).subscribe((singleDocument: any) => {
                 this.recentDocument = singleDocument;
                 this.listTemplate.subscribe(data => {

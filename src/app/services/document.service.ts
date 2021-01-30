@@ -27,4 +27,11 @@ export class DocumentService {
             pluck('data')
         )
     }
+
+    saveDocument = (id, document) => {
+        const url = `${host}${externalContext}${getAllDocumentEndpoint}/${id}`;
+        return this.http.put(url, {
+            ...document
+        });
+    }
 }
