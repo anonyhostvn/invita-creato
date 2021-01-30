@@ -5,7 +5,10 @@
     <div class="card-body">
         <label for="choosing-template"> Choosing Your Template </label>
         <select [(ngModel)]="recentTemplate" (ngModelChange)="ngChangeTemplate()" class="custom-select" id="choosing-template">
-            <option *ngFor="let template of listTemplate" [ngValue]="template">
+            <option [value]="null">
+                ---
+            </option>
+            <option *ngFor="let template of listTemplate | async" [ngValue]="template">
                 {{template.templateName}}
             </option>
         </select>

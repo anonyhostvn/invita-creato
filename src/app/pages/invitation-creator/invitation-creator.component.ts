@@ -3,7 +3,7 @@ import {content, GENDER_TYPE} from './htmlContent';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import * as htmlToImage from 'html-to-image';
 import {FormBuilder} from '@angular/forms';
-import {listTemplate} from './invitation-template.list';
+import {InvitationCreatorService} from './invitation-creator.service';
 
 
 @Component({
@@ -15,9 +15,9 @@ export class InvitationCreatorComponent implements OnInit {
 
     content: SafeHtml = null;
 
-    listTemplate = listTemplate;
+    recentTemplate: any = {};
 
-    recentTemplate = null;
+    listTemplate = this.invitationCreatorService.getAllTemplate();
 
     informationForm = this.formBuilder.group({
         name: '',
@@ -73,9 +73,9 @@ export class InvitationCreatorComponent implements OnInit {
 
     constructor(
         private sanitizer: DomSanitizer,
-        private formBuilder: FormBuilder
-    ) {
-    }
+        private formBuilder: FormBuilder,
+        private invitationCreatorService: InvitationCreatorService
+    ) { }
 
     ngOnInit(): void {
     }

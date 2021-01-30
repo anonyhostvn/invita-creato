@@ -15,6 +15,7 @@ import {InvitationFillingComponent} from './components/invitation-filling/invita
 import {InvitationCreatorComponent} from './pages/invitation-creator/invitation-creator.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         BrowserModule,
         ReactiveFormsModule,
         FormsModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]
