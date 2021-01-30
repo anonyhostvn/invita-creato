@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title"> Documents Manager </h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class=" text-primary">
+                    <th>
+                        Document Name
+                    </th>
+                    <th>
+                        Template Name
+                    </th>
+                    <th>
+                        Note
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let document of listDocument | async">
+                    <td>
+                        {{document.documentName}}
+                    </td>
+                    <td>
+                        {{document.templateId}}
+                    </td>
+                    <td>
+                        {{document.note }}
+                    </td>
+                    <td>
+                        <a class="btn btn-default" [routerLink]="['/products']"> Edit </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

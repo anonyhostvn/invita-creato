@@ -9,7 +9,8 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    {path: '/invitation-creator', title: 'Invitation Creator', icon: 'nc-spaceship', class: ''}
+    {path: '/invitation-creator', title: 'Invitation Editor', icon: 'nc-box-2', class: ''},
+    {path: '/document-management', title: 'Documents', icon: 'nc-paper', class: ''}
 ];
 
 @Component({

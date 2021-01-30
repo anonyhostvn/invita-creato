@@ -16,6 +16,7 @@ import {InvitationCreatorComponent} from './pages/invitation-creator/invitation-
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {DocumentManagementComponent} from './pages/document-management/document-management.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     AdminLayoutComponent,
     InvitationFillingComponent,
-    InvitationCreatorComponent
+    InvitationCreatorComponent,
+    DocumentManagementComponent
   ],
     imports: [
         RouterModule.forRoot(AppRoutes, {
