@@ -4,7 +4,6 @@ import {InvitationCreatorComponent} from '../../pages/invitation-creator/invitat
 import {DocumentManagementComponent} from '../../pages/document-management/document-management.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'invitation-creator', component: InvitationCreatorComponent },
     { path: 'document-management', component: DocumentManagementComponent },
     { path: 'document-management/:id', component: InvitationCreatorComponent}
 ];
