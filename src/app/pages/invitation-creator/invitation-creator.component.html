@@ -2,16 +2,36 @@
     <div class="card-header">
         <h4 class="card-title"> Choose template </h4>
     </div>
-    <div class="card-body" >
-        <label for="choosing-template"> Choosing Your Template </label>
-        <select [(ngModel)]="recentTemplate" (ngModelChange)="ngChangeTemplate()" class="custom-select" id="choosing-template" [disabled]="!isNew">
-            <option [value]="null">
-                ---
-            </option>
-            <option *ngFor="let template of listTemplate | async" [ngValue]="template">
-                {{template.templateName}}
-            </option>
-        </select>
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="choosing-template"> Choosing Your Template </label>
+                        <select
+                                [(ngModel)]="recentTemplate"
+                                (ngModelChange)="ngChangeTemplate()" class="custom-select"
+                                id="choosing-template" [disabled]="!isNew"
+                                [ngModelOptions]="{standalone: true}"
+                        >
+                            <option [value]="null">
+                                ---
+                            </option>
+                            <option *ngFor="let template of listTemplate | async" [ngValue]="template">
+                                {{template.templateName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <label for="template-name"> Document Name </label>
+                        <input type="text" class="form-control" id="template-name" [(ngModel)]="documentName"
+                               [ngModelOptions]="{standalone: true}"/>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 <div class="card">
@@ -117,6 +137,7 @@
                     <button
                             type="button" class="btn btn-secondary"
                             (click)="ngOnSave()"
+                            [disabled]="isLoading"
                     >
                         <i *ngIf="isLoading" class='fa fa-spinner fa-spin '></i>
                         <i *ngIf="!isLoading" class="fa fa-save"></i>

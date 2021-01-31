@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DocumentService} from '../../services/document.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-document-management',
@@ -8,7 +9,7 @@ import {DocumentService} from '../../services/document.service';
 })
 export class DocumentManagementComponent implements OnInit {
 
-  listDocument = this.documentService.getAllDocuments();
+  listDocument: Observable<any[]> = this.documentService.getAllDocuments();
 
   constructor(
       private documentService: DocumentService

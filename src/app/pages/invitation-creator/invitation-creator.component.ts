@@ -4,7 +4,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import * as htmlToImage from 'html-to-image';
 import {FormBuilder} from '@angular/forms';
 import {TemplateService} from '../../services/template.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DocumentService} from '../../services/document.service';
 
 @Component({
@@ -19,6 +19,8 @@ export class InvitationCreatorComponent implements OnInit {
     recentTemplate: any = {};
 
     listTemplate = this.templateService.getAllTemplate();
+
+    documentName: String = '';
 
     recentDocument: any = {};
 
@@ -39,15 +41,35 @@ export class InvitationCreatorComponent implements OnInit {
     });
 
     ngOnSave = (): void => {
-        const newDocument = {
-            ...this.recentDocument,
-            filledInformation: JSON.stringify(this.informationForm.value),
+        if (this.isNew) {
+            const newDocument = {
+                documentName: this.documentName,
+                templateId: this.recentTemplate.id,
+                filledInformation: JSON.stringify(this.informationForm.value)
+            }
+            this.isLoading = true;
+            this.documentService.createDocument(newDocument).subscribe(response => {
+                this.isLoading = false;
+                console.log(response);
+                this.router.navigate(['/document-management']).then(e  => {
+                    console.log(e);
+                });
+            }, error => {
+                this.isLoading = false;
+                console.log(error);
+            });
+        } else {
+            const newDocument = {
+                ...this.recentDocument,
+                filledInformation: JSON.stringify(this.informationForm.value),
+                documentName: this.documentName
+            }
+            this.isLoading = true;
+            this.documentService.saveDocument(this.recentDocument.id, newDocument).subscribe(response  => {
+                this.isLoading = false;
+                console.log(response);
+            });
         }
-        this.isLoading = true;
-        this.documentService.saveDocument(this.recentDocument.id, newDocument).subscribe(response  => {
-            this.isLoading = false;
-            console.log(response);
-        });
     }
 
     ngChangeTemplate = (): void => {
@@ -93,7 +115,8 @@ export class InvitationCreatorComponent implements OnInit {
         private formBuilder: FormBuilder,
         private templateService: TemplateService,
         private documentService: DocumentService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -109,6 +132,7 @@ export class InvitationCreatorComponent implements OnInit {
                     this.informationForm = this.formBuilder.group(JSON.parse(singleDocument.filledInformation));
                     this.onSubmit();
                 });
+                this.documentName = singleDocument.documentName;
             });
         }
     }

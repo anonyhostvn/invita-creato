@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {externalContext, getAllDocumentEndpoint, host} from '../constant/called-service.const';
 import {pluck} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -13,12 +14,19 @@ export class DocumentService {
     ) {
     }
 
-    getAllDocuments = () => {
+    getAllDocuments = (): Observable<any[]> => {
         const url = `${host}${externalContext}${getAllDocumentEndpoint}`;
         return this.http.get(url).pipe(
             pluck('data'),
             pluck('listDocument')
         )
+    }
+
+    createDocument = (document) => {
+        const url = `${host}${externalContext}${getAllDocumentEndpoint}`;
+        return this.http.post(url, {...document}).pipe(
+            pluck('data')
+        );
     }
 
     getSingleDocument = (id) => {
