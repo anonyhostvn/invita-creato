@@ -4,3 +4,4 @@ yarn.lock
 .idea
 src/.DS_STORE
 src/app/.DS_STORE
+./dist
