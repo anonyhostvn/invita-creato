@@ -11,6 +11,18 @@ export class DocumentManagementComponent implements OnInit {
 
   listDocument: Observable<any[]> = this.documentService.getAllDocuments();
 
+  isLoading: Boolean = false;
+
+  ngOnDeleteDocument = (id): void => {
+    this.isLoading = true;
+    this.documentService.deleteDocument(id).subscribe(response => {
+      this.isLoading = false;
+      this.listDocument = this.documentService.getAllDocuments();
+    }, err => {
+      this.isLoading = false;
+    });
+  }
+
   constructor(
       private documentService: DocumentService
   ) { }

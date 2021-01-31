@@ -29,6 +29,11 @@ export class DocumentService {
         );
     }
 
+    deleteDocument = (id) => {
+        const url = `${host}${externalContext}${getAllDocumentEndpoint}/${id}`;
+        return this.http.delete(url);
+    }
+
     getSingleDocument = (id) => {
         const url = `${host}${externalContext}${getAllDocumentEndpoint}/${id}`;
         return this.http.get(url).pipe(
