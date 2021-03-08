@@ -17,6 +17,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {DocumentManagementComponent} from './pages/document-management/document-management.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {DocumentManagementComponent} from './pages/document-management/document-
     AdminLayoutComponent,
     InvitationFillingComponent,
     InvitationCreatorComponent,
-    DocumentManagementComponent
+    DocumentManagementComponent,
+    LoginPageComponent,
+    RegisterPageComponent
   ],
     imports: [
         RouterModule.forRoot(AppRoutes, {
