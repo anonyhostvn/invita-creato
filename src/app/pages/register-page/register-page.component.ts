@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {registerValidator} from './register.validators';
+
 
 @Component({
     selector: 'app-register-page',
@@ -17,6 +20,31 @@ import {Component, OnInit} from '@angular/core';
     ]
 })
 export class RegisterPageComponent implements OnInit {
+
+    registerForm = new FormGroup({
+        username: new FormControl('', [
+            Validators.required
+        ]),
+        password: new FormControl('', [
+            Validators.required,
+            Validators.minLength(8)
+        ]),
+        rePassword: new FormControl('', [
+            Validators.required,
+        ])
+    }, {
+        validators: registerValidator
+    });
+
+    get username() { return this.registerForm.get('username'); }
+
+    get password() { return this.registerForm.get('password'); }
+
+    get rePassword() { return this.registerForm.get('rePassword'); }
+
+    onSubmit = () => {
+        console.log(this.registerForm.value);
+    }
 
     constructor() {
     }
