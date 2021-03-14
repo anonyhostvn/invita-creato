@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
 import {LoginInfo} from '../../models/login-info';
+import {AuthService} from '../../services/auth.service';
+import {observable} from 'rxjs';
 
 @Component({
     selector: 'app-login-page',
@@ -23,10 +25,17 @@ export class LoginPageComponent implements OnInit {
     model = new LoginInfo('', '');
 
     onSubmit = () => {
+        this.authService.login(this.model.username, this.model.password).subscribe(
+            observer => {
+                console.log(observer);
+            }
+        );
         console.log(this.model);
     }
 
-    constructor() {
+    constructor(
+        private authService: AuthService
+    ) {
     }
 
     ngOnInit(): void {

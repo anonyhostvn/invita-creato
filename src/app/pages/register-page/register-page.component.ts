@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {registerValidator} from './register.validators';
+import {AuthService} from '../../services/auth.service';
 
 
 @Component({
@@ -29,6 +30,16 @@ export class RegisterPageComponent implements OnInit {
             Validators.required,
             Validators.minLength(8)
         ]),
+        email: new FormControl('', [
+            Validators.required,
+            Validators.email
+        ]),
+        firstName: new FormControl('', [
+            Validators.required
+        ]),
+        lastName: new FormControl('', [
+            Validators.required
+        ]),
         rePassword: new FormControl('', [
             Validators.required,
         ])
@@ -42,11 +53,22 @@ export class RegisterPageComponent implements OnInit {
 
     get rePassword() { return this.registerForm.get('rePassword'); }
 
+    get email() { return this.registerForm.get('email'); }
+
+    get firstName() {return this.registerForm.get('firstName')}
+
+    get lastName() {return this.registerForm.get('lastName')}
+
     onSubmit = () => {
         console.log(this.registerForm.value);
+        this.authService.register(this.registerForm.value).subscribe(observer => {
+            console.log(observer);
+        })
     }
 
-    constructor() {
+    constructor(
+        private authService: AuthService
+    ) {
     }
 
     ngOnInit(): void {
