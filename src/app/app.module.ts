@@ -19,6 +19,50 @@ import {HttpClientModule} from '@angular/common/http';
 import {DocumentManagementComponent} from './pages/document-management/document-management.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import {NotifierModule, NotifierOptions} from 'angular-notifier';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+const customNotifierOptions: NotifierOptions = {
+    position: {
+        horizontal: {
+            position: 'left',
+            distance: 12
+        },
+        vertical: {
+            position: 'bottom',
+            distance: 12,
+            gap: 10
+        }
+    },
+    theme: 'material',
+    behaviour: {
+        autoHide: 5000,
+        onClick: 'hide',
+        onMouseover: 'pauseAutoHide',
+        showDismissButton: true,
+        stacking: 4
+    },
+    animations: {
+        enabled: true,
+        show: {
+            preset: 'slide',
+            speed: 300,
+            easing: 'ease'
+        },
+        hide: {
+            preset: 'fade',
+            speed: 300,
+            easing: 'ease',
+            offset: 50
+        },
+        shift: {
+            speed: 300,
+            easing: 'ease'
+        },
+        overlap: 150
+    }
+};
 
 
 @NgModule({
@@ -43,7 +87,9 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
         BrowserModule,
         ReactiveFormsModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        NotifierModule.withConfig(customNotifierOptions),
+        BrowserAnimationsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

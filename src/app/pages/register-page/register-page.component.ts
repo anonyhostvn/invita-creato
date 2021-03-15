@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {registerValidator} from './register.validators';
 import {AuthService} from '../../services/auth.service';
+import { NotifierService } from 'angular-notifier';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -21,6 +24,10 @@ import {AuthService} from '../../services/auth.service';
     ]
 })
 export class RegisterPageComponent implements OnInit {
+
+    private readonly notifier: NotifierService;
+
+    isLoading: Boolean = false;
 
     registerForm = new FormGroup({
         username: new FormControl('', [
@@ -60,15 +67,24 @@ export class RegisterPageComponent implements OnInit {
     get lastName() {return this.registerForm.get('lastName')}
 
     onSubmit = () => {
-        console.log(this.registerForm.value);
+        this.isLoading = true;
         this.authService.register(this.registerForm.value).subscribe(observer => {
             console.log(observer);
+            this.isLoading = false;
+            this.router.navigate(['/login'])
+                .then(() => console.log('navigate to login page'))
+                .catch(() => console.log('error'));
+        }, () => {
+            console.log('error');
         })
     }
 
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private notifierService: NotifierService,
+        private router: Router
     ) {
+        this.notifier = notifierService;
     }
 
     ngOnInit(): void {

@@ -51,6 +51,9 @@
 
                 <div class="container-login100-form-btn">
                     <button type="submit" class="login100-form-btn btn btn-success" [disabled]="!loginForm.form.valid">
+                        <span *ngIf="isLoading" class="spinner-border m-5" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </span>
                         Sign in
                     </button>
                 </div>

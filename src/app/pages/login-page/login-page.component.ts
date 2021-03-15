@@ -24,13 +24,20 @@ export class LoginPageComponent implements OnInit {
 
     model = new LoginInfo('', '');
 
+    isLoading: Boolean = false;
+
     onSubmit = () => {
+        this.isLoading = true;
         this.authService.login(this.model.username, this.model.password).subscribe(
             observer => {
                 console.log(observer);
+                this.isLoading = false;
+            },
+            () => {
+                console.log('Error');
+                this.isLoading = false;
             }
         );
-        console.log(this.model);
     }
 
     constructor(
