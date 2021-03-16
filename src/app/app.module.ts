@@ -22,6 +22,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import {NotifierModule, NotifierOptions} from 'angular-notifier';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GlobalInterceptor} from './global.interceptor';
+import { ChangePassComponent } from './pages/change-pass/change-pass.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -74,7 +75,8 @@ const customNotifierOptions: NotifierOptions = {
     InvitationCreatorComponent,
     DocumentManagementComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ChangePassComponent
   ],
     imports: [
         RouterModule.forRoot(AppRoutes, {

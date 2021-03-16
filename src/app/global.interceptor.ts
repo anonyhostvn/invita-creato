@@ -29,8 +29,8 @@ export class GlobalInterceptor implements HttpInterceptor {
             // Operation failed; error is an HttpErrorResponse
             error => {
               if (error.status === 401) {
-                this.router.navigate(['login']);
-                localStorage.removeItem('token');
+                // this.router.navigate(['login']);
+                // localStorage.removeItem('token');
               }
             }
         )
