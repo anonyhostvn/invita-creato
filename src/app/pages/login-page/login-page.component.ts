@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {LoginInfo} from '../../models/login-info';
 import {AuthService} from '../../services/auth.service';
-import {observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login-page',
@@ -41,11 +41,15 @@ export class LoginPageComponent implements OnInit {
     }
 
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
     }
 
     ngOnInit(): void {
+        if (localStorage.getItem('token')) {
+            this.router.navigate(['']);
+        }
     }
 
 }

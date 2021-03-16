@@ -88,6 +88,9 @@ export class RegisterPageComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if (localStorage.getItem('token')) {
+            this.router.navigate(['']);
+        }
     }
 
 }

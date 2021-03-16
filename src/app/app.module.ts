@@ -15,12 +15,13 @@ import {InvitationFillingComponent} from './components/invitation-filling/invita
 import {InvitationCreatorComponent} from './pages/invitation-creator/invitation-creator.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {DocumentManagementComponent} from './pages/document-management/document-management.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import {NotifierModule, NotifierOptions} from 'angular-notifier';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {GlobalInterceptor} from './global.interceptor';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -91,7 +92,9 @@ const customNotifierOptions: NotifierOptions = {
         NotifierModule.withConfig(customNotifierOptions),
         BrowserAnimationsModule
     ],
-  providers: [],
+  providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
