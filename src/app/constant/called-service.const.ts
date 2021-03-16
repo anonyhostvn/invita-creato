@@ -5,5 +5,6 @@ export const externalContext = '/external';
 export const addTemplateEndpoint = '/template/add';
 export const loginEndpoint = '/user/login';
 export const registerEndpoint = '/user/sign-up';
+export const changePasswordEndpoint = '/edit/changepassword';
 export const getAllTemplateEndpoint = '/template';
 export const getAllDocumentEndpoint = '/document';

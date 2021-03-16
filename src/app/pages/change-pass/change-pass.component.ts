@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {changePassValidator} from './changePass.validator';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-change-pass',
@@ -33,9 +34,17 @@ export class ChangePassComponent implements OnInit {
 
   onSubmit = () => {
     console.log(this.changePasswordForm.value);
+    const {oldPassword, newPassword, verifyNewPassword} = this.changePasswordForm.value;
+    this.authService.changePassword(oldPassword, newPassword, verifyNewPassword).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
   }
 
-  constructor() { }
+  constructor(
+      private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }

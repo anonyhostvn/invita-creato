@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 
 export interface RouteInfo {
@@ -22,7 +23,17 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
 
+    onLogout = () => {
+        localStorage.removeItem('token');
+        this.router.navigate(['login']);
+    }
+
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
+    }
+
+    constructor(
+        private router: Router
+    ) {
     }
 }

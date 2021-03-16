@@ -18,7 +18,7 @@ export class GlobalInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    const newHeader = request.headers.append('token', `Bearer ${localStorage.getItem('token')}`);
+    const newHeader = request.headers.append('Authorization', `${localStorage.getItem('token')}`);
 
     const newRequest = request.clone({headers: newHeader});
 
@@ -29,8 +29,8 @@ export class GlobalInterceptor implements HttpInterceptor {
             // Operation failed; error is an HttpErrorResponse
             error => {
               if (error.status === 401) {
-                // this.router.navigate(['login']);
-                // localStorage.removeItem('token');
+                this.router.navigate(['login']);
+                localStorage.removeItem('token');
               }
             }
         )

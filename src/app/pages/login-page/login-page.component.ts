@@ -29,8 +29,10 @@ export class LoginPageComponent implements OnInit {
     onSubmit = () => {
         this.isLoading = true;
         this.authService.login(this.model.username, this.model.password).subscribe(
-            observer => {
+            (observer: any) => {
                 console.log(observer);
+                localStorage.setItem('token', `${observer.type} ${observer.token}`);
+                this.router.navigate(['document-management']);
                 this.isLoading = false;
             },
             () => {
