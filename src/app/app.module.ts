@@ -23,6 +23,8 @@ import {NotifierModule, NotifierOptions} from 'angular-notifier';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GlobalInterceptor} from './global.interceptor';
 import { ChangePassComponent } from './pages/change-pass/change-pass.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -92,7 +94,8 @@ const customNotifierOptions: NotifierOptions = {
         FormsModule,
         HttpClientModule,
         NotifierModule.withConfig(customNotifierOptions),
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatSnackBarModule
     ],
   providers: [
       { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },

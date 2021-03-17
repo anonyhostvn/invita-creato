@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {registerValidator} from './register.validators';
 import {AuthService} from '../../services/auth.service';
-import { NotifierService } from 'angular-notifier';
-import { Router } from '@angular/router';
-
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -24,8 +23,6 @@ import { Router } from '@angular/router';
     ]
 })
 export class RegisterPageComponent implements OnInit {
-
-    private readonly notifier: NotifierService;
 
     isLoading: Boolean = false;
 
@@ -54,43 +51,65 @@ export class RegisterPageComponent implements OnInit {
         validators: registerValidator
     });
 
-    get username() { return this.registerForm.get('username'); }
+    get username() {
+        return this.registerForm.get('username');
+    }
 
-    get password() { return this.registerForm.get('password'); }
+    get password() {
+        return this.registerForm.get('password');
+    }
 
-    get rePassword() { return this.registerForm.get('rePassword'); }
+    get rePassword() {
+        return this.registerForm.get('rePassword');
+    }
 
-    get email() { return this.registerForm.get('email'); }
+    get email() {
+        return this.registerForm.get('email');
+    }
 
-    get firstName() {return this.registerForm.get('firstName')}
+    get firstName() {
+        return this.registerForm.get('firstName')
+    }
 
-    get lastName() {return this.registerForm.get('lastName')}
+    get lastName() {
+        return this.registerForm.get('lastName')
+    }
 
     onSubmit = () => {
         this.isLoading = true;
-        this.authService.register(this.registerForm.value).subscribe(observer => {
-            console.log(observer);
+        const {rePassword} = this.registerForm.value;
+        this.authService.register({
+            ...this.registerForm.value,
+            retypePassword: rePassword
+        }).subscribe(observer => {
+
+            this._snackBar.open('Register Successfully', 'Confirm', {
+                duration: 2000
+            });
+            this.registerForm.reset();
+            // this.router.navigate(['/login'])
+            //     .then(() => console.log('navigate to login page'))
+            //     .catch(() => console.log('error'));
             this.isLoading = false;
-            this.router.navigate(['/login'])
-                .then(() => console.log('navigate to login page'))
-                .catch(() => console.log('error'));
+
         }, () => {
+            this.isLoading = false;
             console.log('error');
         })
     }
 
     constructor(
         private authService: AuthService,
-        private notifierService: NotifierService,
-        private router: Router
+        private router: Router,
+        private _snackBar: MatSnackBar
     ) {
-        this.notifier = notifierService;
     }
 
     ngOnInit(): void {
         if (localStorage.getItem('token')) {
             this.router.navigate(['']);
         }
+
     }
 
 }

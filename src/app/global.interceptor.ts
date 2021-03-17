@@ -8,12 +8,15 @@ import {
 import { Observable } from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Injectable()
 export class GlobalInterceptor implements HttpInterceptor {
 
   constructor(
-      private router: Router
+      private router: Router,
+      private _snackbar: MatSnackBar
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -32,6 +35,9 @@ export class GlobalInterceptor implements HttpInterceptor {
                 this.router.navigate(['login']);
                 localStorage.removeItem('token');
               }
+              this._snackbar.open(error?.error?.status?.message, 'Close', {
+                  duration: 2000
+              })
             }
         )
     );

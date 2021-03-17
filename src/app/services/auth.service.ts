@@ -20,9 +20,9 @@ export class AuthService {
     )
   }
 
-  register = ({username, password, firstName, lastName, email}): Observable<any[]> => {
+  register = ({username, password, firstName, lastName, email, retypePassword}): Observable<any[]> => {
     const url = `${host}${registerEndpoint}`;
-    return this.http.post(url, {username, password, firstName, lastName, email}).pipe(
+    return this.http.post(url, {username, password, firstName, lastName, email, retypePassword}).pipe(
         pluck('data')
     )
   }
