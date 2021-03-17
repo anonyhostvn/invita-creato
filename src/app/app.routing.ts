@@ -4,6 +4,7 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {RegisterPageComponent} from './pages/register-page/register-page.component';
 import {AppGuardGuard} from './app-guard.guard';
+import {ForgotPassComponent} from './pages/forgot-pass/forgot-pass.component';
 
 export const AppRoutes: Routes = [
     {
@@ -29,6 +30,10 @@ export const AppRoutes: Routes = [
     {
       path: 'register' ,
       component: RegisterPageComponent
+    },
+    {
+        path: 'forgot-pass' ,
+        component: ForgotPassComponent
     },
     {
         path: '**',

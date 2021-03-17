@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {GlobalInterceptor} from './global.interceptor';
 import { ChangePassComponent } from './pages/change-pass/change-pass.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ForgotPassComponent } from './pages/forgot-pass/forgot-pass.component';
 
 
 
@@ -78,7 +79,8 @@ const customNotifierOptions: NotifierOptions = {
     DocumentManagementComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    ChangePassComponent
+    ChangePassComponent,
+    ForgotPassComponent
   ],
     imports: [
         RouterModule.forRoot(AppRoutes, {
