@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {changePassValidator} from './changePass.validator';
 import {AuthService} from '../../services/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-change-pass',
@@ -33,17 +34,18 @@ export class ChangePassComponent implements OnInit {
   get verifyNewPassword() { return this.changePasswordForm.get('verifyNewPassword'); }
 
   onSubmit = () => {
-    console.log(this.changePasswordForm.value);
     const {oldPassword, newPassword, verifyNewPassword} = this.changePasswordForm.value;
     this.authService.changePassword(oldPassword, newPassword, verifyNewPassword).subscribe(data => {
-      console.log(data);
+      this._snack.open('Change password successfully', 'Confirm');
+      this.changePasswordForm.reset();
     }, error => {
       console.log(error);
     });
   }
 
   constructor(
-      private authService: AuthService
+      private authService: AuthService,
+      private _snack: MatSnackBar
   ) { }
 
   ngOnInit(): void {

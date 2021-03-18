@@ -9,9 +9,16 @@ import {Observable} from 'rxjs';
 })
 export class DocumentManagementComponent implements OnInit {
 
-  listDocument: Observable<any[]> = this.documentService.getAllDocuments();
+  listDocument: Observable<any[]> = this.documentService.getAllDocuments().pipe(observer => {
+    observer.subscribe(data => {
+      this.isLoading = false;
+    }, error => {
+      this.isLoading = false;
+    });
+    return observer;
+  });
 
-  isLoading: Boolean = false;
+  isLoading: Boolean = true;
 
   ngOnDeleteDocument = (id): void => {
     this.isLoading = true;

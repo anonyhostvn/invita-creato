@@ -25,6 +25,7 @@ import {GlobalInterceptor} from './global.interceptor';
 import { ChangePassComponent } from './pages/change-pass/change-pass.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ForgotPassComponent } from './pages/forgot-pass/forgot-pass.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -97,7 +98,8 @@ const customNotifierOptions: NotifierOptions = {
         HttpClientModule,
         NotifierModule.withConfig(customNotifierOptions),
         BrowserAnimationsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatProgressSpinnerModule
     ],
   providers: [
       { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },
