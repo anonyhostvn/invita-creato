@@ -83,7 +83,7 @@ export class RegisterPageComponent implements OnInit {
             retypePassword: rePassword
         }).subscribe(observer => {
 
-            this._snackBar.open('Register Successfully', 'Confirm', {
+            this._snackBar.open('Register successfully, check mail for confirmation !', 'Confirm', {
                 duration: 2000
             });
             this.registerForm.reset();

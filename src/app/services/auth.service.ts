@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {changePasswordEndpoint, host, loginEndpoint, registerEndpoint} from '../constant/called-service.const';
+import {changePasswordEndpoint, host, loginEndpoint, registerEndpoint, verifyRegisterEndpoint} from '../constant/called-service.const';
 import {pluck} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 
@@ -32,5 +32,10 @@ export class AuthService {
     return this.http.post(url, {oldPassword, newPassword, retypeNewPassword}).pipe(
         pluck('data')
     )
+  }
+
+  confirmEmail = (token) => {
+    const url = `${host}${verifyRegisterEndpoint}?token=${token}`;
+    return this.http.get(url);
   }
 }

@@ -6,5 +6,6 @@ export const addTemplateEndpoint = '/template/add';
 export const loginEndpoint = '/auth/login';
 export const registerEndpoint = '/auth/sign-up';
 export const changePasswordEndpoint = '/auth/changepassword';
+export const verifyRegisterEndpoint = '/auth/verify';
 export const getAllTemplateEndpoint = '/template';
 export const getAllDocumentEndpoint = '/document';

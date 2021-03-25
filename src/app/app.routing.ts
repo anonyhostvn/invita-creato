@@ -5,6 +5,7 @@ import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {RegisterPageComponent} from './pages/register-page/register-page.component';
 import {AppGuardGuard} from './app-guard.guard';
 import {ForgotPassComponent} from './pages/forgot-pass/forgot-pass.component';
+import {ConfirmEmailComponent} from './pages/confirm-email/confirm-email.component';
 
 export const AppRoutes: Routes = [
     {
@@ -34,6 +35,10 @@ export const AppRoutes: Routes = [
     {
         path: 'forgot-pass' ,
         component: ForgotPassComponent
+    },
+    {
+        path: 'confirm-email' ,
+        component: ConfirmEmailComponent
     },
     {
         path: '**',
