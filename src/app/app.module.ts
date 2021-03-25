@@ -27,6 +27,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ForgotPassComponent } from './pages/forgot-pass/forgot-pass.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 
 
@@ -83,7 +84,8 @@ const customNotifierOptions: NotifierOptions = {
     RegisterPageComponent,
     ChangePassComponent,
     ForgotPassComponent,
-    ConfirmEmailComponent
+    ConfirmEmailComponent,
+    ResetPasswordComponent
   ],
     imports: [
         RouterModule.forRoot(AppRoutes, {

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-forgot-pass',
@@ -33,10 +35,23 @@ export class ForgotPassComponent implements OnInit {
     }
 
     onSubmit = () => {
-        console.log(this.forgotPassForm.value);
+        const {email} = this.forgotPassForm.value;
+        this.authService.sendEmailRecoverPassword(email).subscribe(data => {
+            this._snackBar.open('Your email confirmation is sent successfully !', 'Confirm', {
+                duration: 2000
+            });
+        }, err => {
+            this._snackBar.open('Something wrongs, your email confirmation have not been sent', 'Confirm', {
+                duration: 2000
+            });
+        });
     }
 
-    constructor() {
+    constructor(
+        private authService: AuthService,
+        private _snackBar: MatSnackBar
+    ) {
+
     }
 
     ngOnInit(): void {

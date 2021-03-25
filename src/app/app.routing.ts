@@ -6,6 +6,7 @@ import {RegisterPageComponent} from './pages/register-page/register-page.compone
 import {AppGuardGuard} from './app-guard.guard';
 import {ForgotPassComponent} from './pages/forgot-pass/forgot-pass.component';
 import {ConfirmEmailComponent} from './pages/confirm-email/confirm-email.component';
+import {ResetPasswordComponent} from './pages/reset-password/reset-password.component';
 
 export const AppRoutes: Routes = [
     {
@@ -39,6 +40,10 @@ export const AppRoutes: Routes = [
     {
         path: 'confirm-email' ,
         component: ConfirmEmailComponent
+    },
+    {
+        path: 'reset-pass',
+        component: ResetPasswordComponent
     },
     {
         path: '**',

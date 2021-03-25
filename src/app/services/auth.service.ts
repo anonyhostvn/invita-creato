@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {changePasswordEndpoint, host, loginEndpoint, registerEndpoint, verifyRegisterEndpoint} from '../constant/called-service.const';
+import {changePasswordEndpoint, host, loginEndpoint, registerEndpoint, verifyRegisterEndpoint, resetPasswordEndPoint, recoverPasswordEndpoint} from '../constant/called-service.const';
 import {pluck} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 
@@ -37,5 +37,15 @@ export class AuthService {
   confirmEmail = (token) => {
     const url = `${host}${verifyRegisterEndpoint}?token=${token}`;
     return this.http.get(url);
+  }
+
+  resetPassword = (token, password, rePassword) => {
+    const url = `${host}${resetPasswordEndPoint}?token=${token}`;
+    return this.http.post(url, {password, retypePassword: rePassword});
+  }
+
+  sendEmailRecoverPassword = (email) => {
+    const url = `${host}${recoverPasswordEndpoint}`;
+    return this.http.post(url, {email});
   }
 }
