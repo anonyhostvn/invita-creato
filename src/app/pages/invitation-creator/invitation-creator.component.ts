@@ -90,6 +90,7 @@ export class InvitationCreatorComponent implements OnInit {
 
     onSubmit(): void {
         const {value} = this.informationForm;
+        console.log(this.recentTemplate);
         this.content = this.sanitizer.bypassSecurityTrustHtml(content({
             ...value,
             ctsRepresent: value.ctsRepresent ? value.ctsRepresent.split(',') : undefined,
@@ -125,14 +126,12 @@ export class InvitationCreatorComponent implements OnInit {
         if (documentId !== 'new') {
             this.isNew = null;
             this.documentService.getSingleDocument(documentId).subscribe((singleDocument: any) => {
+                const {invitaTemplate, filledInformation} = singleDocument;
                 this.recentDocument = singleDocument;
-                this.listTemplate.subscribe(data => {
-                    this.recentTemplate = data.filter(listTemplate => listTemplate.id === singleDocument.templateId)[0];
-                    this.ngChangeTemplate();
-                    this.informationForm = this.formBuilder.group(JSON.parse(singleDocument.filledInformation));
-                    this.onSubmit();
-                });
+                this.informationForm = this.formBuilder.group(JSON.parse(filledInformation));
+                this.recentTemplate = invitaTemplate;
                 this.documentName = singleDocument.documentName;
+                this.ngChangeTemplate();
             });
         }
     }
