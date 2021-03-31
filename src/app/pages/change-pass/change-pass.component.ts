@@ -11,6 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class ChangePassComponent implements OnInit {
 
+  isLoading = false;
+
   changePasswordForm = new FormGroup({
     oldPassword: new FormControl('', [
       Validators.required,
@@ -35,10 +37,13 @@ export class ChangePassComponent implements OnInit {
 
   onSubmit = () => {
     const {oldPassword, newPassword, verifyNewPassword} = this.changePasswordForm.value;
+    this.isLoading = true;
     this.authService.changePassword(oldPassword, newPassword, verifyNewPassword).subscribe(data => {
       this._snack.open('Change password successfully', 'Confirm');
       this.changePasswordForm.reset();
+      this.isLoading = false;
     }, error => {
+      this.isLoading = false;
       console.log(error);
     });
   }

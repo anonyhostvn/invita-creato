@@ -137,6 +137,8 @@ export class InvitationCreatorComponent implements OnInit {
             }, err => {
                 this.isLoading = false;
             });
+        } else {
+            this.isLoading = false;
         }
     }
 
