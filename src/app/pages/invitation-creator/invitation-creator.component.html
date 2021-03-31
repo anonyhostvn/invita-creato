@@ -37,6 +37,9 @@
 <div class="card">
     <div class="card-header">
         <h4 class="card-title"> Filling Information </h4>
+        <span *ngIf="isLoading" class="spinner-border m-5" role="status">
+            <span class="sr-only">Loading...</span>
+        </span>
     </div>
     <div class="card-body document-card-container">
 

@@ -123,15 +123,19 @@ export class InvitationCreatorComponent implements OnInit {
     ngOnInit(): void {
         const {snapshot: {paramMap}} = this.route;
         const documentId = paramMap.get('id');
+        this.isLoading = true;
         if (documentId !== 'new') {
             this.isNew = null;
             this.documentService.getSingleDocument(documentId).subscribe((singleDocument: any) => {
+                this.isLoading = false;
                 const {invitaTemplate, filledInformation} = singleDocument;
                 this.recentDocument = singleDocument;
                 this.informationForm = this.formBuilder.group(JSON.parse(filledInformation));
                 this.recentTemplate = invitaTemplate;
                 this.documentName = singleDocument.documentName;
                 this.ngChangeTemplate();
+            }, err => {
+                this.isLoading = false;
             });
         }
     }

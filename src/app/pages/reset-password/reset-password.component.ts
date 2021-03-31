@@ -46,6 +46,7 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     onSubmit = () => {
+        this.isLoading = true;
         this.route.queryParams.subscribe(params => {
             if (params['token']) {
                 const {password, rePassword} = this.resetPassForm.value;
@@ -59,6 +60,10 @@ export class ResetPasswordComponent implements OnInit {
                             });
                         });
                         this.resetPassForm.reset();
+                        this.isLoading = false;
+                    },
+                    err => {
+                        this.isLoading = false;
                     }
                 )
             } else {

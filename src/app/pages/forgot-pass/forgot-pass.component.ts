@@ -36,14 +36,17 @@ export class ForgotPassComponent implements OnInit {
 
     onSubmit = () => {
         const {email} = this.forgotPassForm.value;
+        this.isLoading = true;
         this.authService.sendEmailRecoverPassword(email).subscribe(data => {
             this._snackBar.open('Your email confirmation is sent successfully !', 'Confirm', {
                 duration: 2000
             });
+            this.isLoading = false;
         }, err => {
             this._snackBar.open('Something wrongs, your email confirmation have not been sent', 'Confirm', {
                 duration: 2000
             });
+            this.isLoading = false;
         });
     }
 
